@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>News</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <div id="News_col">
+        <div>
+
+        </div>
+    </div>
+</body>
+<script>
+    let httpRequest = new XMLHttpRequest()
+    httpRequest.onload = function () {
+        if (httpRequest.readyState == XMLHttpRequest.DONE) {
+            if (httpRequest.status == 200) {
+                status.innerHTML = `${listViewGenerator(Response)}`;
+            } else if (httpRequest.status == 500) {
+                status.innerHTML = httpRequest.responseText;
+            }
+        }
+        httpRequest.open("GET", `/`)
+        httpRequest.send()
+    }
+    function listViewGenerator(arrayString) {
+            console.log(arrayString)
+            let list = "";
+            for (words of arrayString) {
+                list += `<li class="list-group-item " >${words}</li>`;
+            }
+            return list;
+        }
+</script>
+
+</html>
